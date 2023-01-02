@@ -1,10 +1,9 @@
 @extends('layout.tamplate')
 @section('title')
-Form Data Barang
+Form Tambah Data Barang
 @endsection
 @section('content')
-<div class="col-lg-8">        
-  <form action="/barang" method="post">
+  <form action="/barang" method="post" enctype="multipart/form-data">
       @csrf
       <div class="mb-3">
         <label for="kode_barang" class="col-form-label">Kode Barang:</label>
@@ -42,17 +41,11 @@ Form Data Barang
         </div>
       @enderror
       </div>
-      <div class="mb-3">
-        <label for="gambar" class="col-form-label">Gambar Barang:</label>
-        <input type="file" class="form-control" name="gambar">
-      
-      </div>
       <div class="modal-footer">
         <a href="/barang" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
     </form>
-  </div>
 @endsection
 
 

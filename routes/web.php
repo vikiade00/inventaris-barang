@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [LayoutController::class, 'index']);
 Route::resource('/barang', BarangController::class);
+Route::resource('/peminjaman', PeminjamanController::class);
+Route::get('/autofill', [PeminjamanController::class, 'autofill'])->name('autofill');

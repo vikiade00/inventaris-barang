@@ -13,7 +13,10 @@ class Barang extends Model
         'kode_barang',
         'nama_barang',
         'qty',
-        'satuan',
-        'gambar'
+        'satuan'
     ];
+
+    public function peminjaman(){
+        return $this->hasOne(Peminjaman::class);
+    }
 }
