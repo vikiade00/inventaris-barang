@@ -19,4 +19,7 @@ class Barang extends Model
     public function peminjaman(){
         return $this->hasOne(Peminjaman::class);
     }
+    public function pengembalian(){
+        return $this->hasOne(pengembalian::class);
+    }
 }

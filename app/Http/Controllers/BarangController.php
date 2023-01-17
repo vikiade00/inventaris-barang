@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Redirect;
 
 class BarangController extends Controller
@@ -15,7 +16,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data = Barang::latest()->paginate(5);
+        $data = Barang::latest()->paginate();
         return view('barang.index', compact('data'));
     }
 
@@ -37,11 +38,18 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'kode_barang' => 'required|unique:barang|max:50',
             'nama_barang' => 'required',
-            'qty' => 'required',
+            'qty' => 'required|numeric',
             'satuan' => 'required',
+        ],[
+            'kode_barang.required' => 'Kode barang wajib di isi',
+            'kode_barang.unique' => 'Kode barang tidak boleh sama',
+            'nama_barang.required' => 'Nama Barang wajib di isi',
+            'qty.required' => 'qty wajib di isi',
+            'satuan.required' => 'satuan wajib di isi',
         ]);
         
         Barang::create([
@@ -111,10 +119,12 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy( $id)
     {
-        Barang::destroy($barang->id);
-        
-        return redirect('/barang')->with('success', 'Data berhasil dihapus !');
+        $barang = Barang::find($id);
+        $barang->delete();
+
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
+
 }

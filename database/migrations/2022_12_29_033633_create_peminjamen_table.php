@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->string('nama_peminjam');
-            $table->foreignId('barang_id')->references('id')->on('barang');
+            $table->foreignId('barang_id')->references('id')->on('barang')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama_barang');
-            $table->string('jumlah_pinjam');
+            $table->integer('jumlah_pinjam');
             $table->string('satuan');
-            $table->date('tgl_pinjam');
-            $table->date('tgl_kembali');
             $table->string('keperluan');
             $table->timestamps();
         });
