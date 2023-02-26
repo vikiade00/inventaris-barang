@@ -46,12 +46,12 @@ class BarangController extends Controller
             'satuan' => 'required',
         ],[
             'kode_barang.required' => 'Kode barang wajib di isi',
-            'kode_barang.unique' => 'Kode barang tidak boleh sama',
+            'kode_barang.unique' => 'Kode barang sudah ada tolong cek kembali',
             'nama_barang.required' => 'Nama Barang wajib di isi',
             'qty.required' => 'qty wajib di isi',
             'satuan.required' => 'satuan wajib di isi',
         ]);
-        
+
         Barang::create([
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
@@ -95,6 +95,19 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
+       
+        $this->validate($request,[
+            'nama_barang' => 'required',
+            'qty' => 'required|numeric',
+            'satuan' => 'required',
+        ],[
+            'kode_barang.required' => 'Kode barang wajib di isi',
+            'kode_barang.unique' => 'Kode barang tidak boleh sama',
+            'nama_barang.required' => 'Nama Barang wajib di isi',
+            'qty.required' => 'qty wajib di isi',
+            'satuan.required' => 'satuan wajib di isi',
+        ]);
+       
         $rules=[
             'nama_barang' => 'required',
             'qty' => 'required',
@@ -102,7 +115,7 @@ class BarangController extends Controller
         ];
 
         if($request->kode_barang != $barang->kode_barang){
-            $rules['kode_barang'] = 'required|unique:barang|max:50';
+            $rules['kode_barang'] = 'required|unique:barang|max:50';    
         }
 
         $validateData = $request->validate($rules);

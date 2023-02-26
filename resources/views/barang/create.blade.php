@@ -4,6 +4,8 @@ Form Tambah Data Barang
 @endsection
 @section('content')
   <form action="/barang" method="post" enctype="multipart/form-data">
+@include('sweetalert::alert')
+
       @csrf
       <div class="mb-3">
         <label for="kode_barang" class="col-form-label">Kode Barang:</label>

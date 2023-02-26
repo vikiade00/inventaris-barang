@@ -26,7 +26,7 @@
           </h1>
           <p style="color: hsl(217, 10%, 50.8%)">
             SIMBA (SISTEM INVENTARIS BARANG) Merupakan sebuah
-            aplkasi pengelolaan peminjaman inventaris barang yang ada
+            aplikasi pengelolaan peminjaman inventaris barang yang ada
             di SMK PASUNDAN 2 Bandung, guna untuk mempermudah pengelolaan
             peminjaman barang.
           </p>
@@ -45,18 +45,18 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="username">Username</label>
-                  <input autocomplete="off" placeholder="Masukan Username" type="text" name="username" id="username" class="form-control" />
+                  <input autocomplete="off" placeholder="Masukan Username" type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" autofocus value="{{ old('username') }}" />
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="password">Password</label>
-                  <input autocomplete="off" placeholder="Masukan Password" type="password" name="password" id="password" class="form-control" />
+                  <input autocomplete="off" placeholder="Masukan Password" type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" />
                 </div>
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block mb-4">
-                  Sign up
+                  Sign In
                 </button>
 <br>
                 Kamu mau pinjam barang ? <a href="/peminjam/register"> Daftar </a> akun peminjam dulu yuk !

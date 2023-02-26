@@ -6,7 +6,10 @@ Form Data Barang
 Data Barang
 @endsection
 @section('content')
-<a href="/barang/create/" type="button" class="btn btn-primary btn-sm mb-4">Tambah Data <span data-feather="file-plus"></span></a>
+@can('admin')    
+<a href="/barang/create" type="button" class="btn btn-primary btn-sm mb-4">Tambah Data <span data-feather="file-plus"></span></a>
+@endcan
+<a href="/print/barang" target="_blank" type="button" class="btn btn-primary btn-sm mb-4">Print Data <span data-feather="file-plus"></span></a>
     <div class="table-responsive">
 <table id="datatables" class="table table-hover mt-3 me-3 text-gray-800">
         <thead>
@@ -17,7 +20,9 @@ Data Barang
               <th scope="col">QTY</th>
               <th scope="col">SATUAN</th>
               <th scope="col">UPDATE</th>
+              @can('admin')                  
               <th scope="col">AKSI</th>
+              @endcan
             </tr>
           </thead>
           <tbody>
@@ -32,6 +37,7 @@ Data Barang
                 <td>{{ $item->qty }}</td>                    
                 <td>{{ $item->satuan }}</td>                    
                 <td>{{ $item->updated_at }}</td>                    
+                @can('admin')                    
                 <td>
                     <a href="barang/{{ $item->id }}/edit" class="badge bg-primary border-0"><span data-feather="edit-3"></a>
                     <form action="{{ route('barang.destroy',$item->id) }}" method="post" class="d-inline">
@@ -40,6 +46,7 @@ Data Barang
                     <button class="badge bg-danger border-0 btndelete"><span data-feather="x-circle"></span></button>
                     </form>
                   </td>
+                @endcan
             </tr>
             @endforeach  
                       

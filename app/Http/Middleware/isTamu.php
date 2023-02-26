@@ -18,7 +18,7 @@ class isTamu
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            return redirect('barang')->with('success','Kamu sudah dalam keadaan log in');
+            return redirect('dashboard')->with('success','Kamu sudah dalam keadaan log in');
     }
     return $next($request);
     }

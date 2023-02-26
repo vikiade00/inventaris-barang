@@ -14,10 +14,13 @@
           <th scope="col">NO</th>
           <th scope="col">Email</th>
           <th scope="col">Nama</th>
-          <th scope="col">No Whatshap</th>
+          <th scope="col">No Whatsapp</th>
+          <th scope="col">Kelas</th>
           <th scope="col">Alamat</th>
           <th scope="col">Update</th>
+          @can('admin')              
           <th scope="col">Aksi</th>
+          @endcan
         </tr>
       </thead>
       <tbody>
@@ -30,8 +33,10 @@
             <td>{{ $item->email }}</td>                    
             <td>{{ $item->nama }}</td>                    
             <td>{{ $item->no_wa }}</td>                    
+            <td>{{ $item->kelas }}</td>                    
             <td>{{ $item->alamat }}</td>                    
-            <td>{{ $item->updated_at }}</td>                    
+            <td>{{ $item->updated_at }}</td>
+            @can('admin')                
             <td>
                 <a href="peminjam/{{ $item->id }}/edit" class="badge bg-primary border-0"><span data-feather="edit-3"></a>
                 <form action="{{ route('peminjam.destroy',$item->id) }}" method="post" class="d-inline">
@@ -40,6 +45,7 @@
                 <button class="badge bg-danger border-0 btndelete"><span data-feather="x-circle"></span></button>
                 </form>
               </td>
+            @endcan                    
         </tr>
         @endforeach  
                   
@@ -79,7 +85,7 @@
                       };
                       $.ajax({
                           type: "DELETE",
-                          url: 'barang/' + deleteid,
+                          url: 'peminjam/' + deleteid,
                           data: data,
                           success: function (response) {
                               swal(response.status, {

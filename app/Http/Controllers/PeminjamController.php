@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class PeminjamController extends Controller
 {
     /**
@@ -39,13 +41,17 @@ class PeminjamController extends Controller
         $this->validate($request,[
             'email' => 'required|unique:peminjam',
             'nama' => 'required',
-            'no_wa' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'no_wa' => 'required|numeric|digits_between:1,15',
+            'kelas' => 'required',
             'alamat' => 'required',
         ],[
             'email.required' => 'Email wajib di isi !',
             'email.unique' => 'Email sudah terdaftar, jika terjadi kesalahan hubungi admin !',
             'nama.required' => 'Nama wajib di isi !',
+            'nama.digits' => 'Nama tidak valid atau terlalu panjang !',
+            'no_wa.digits_between' => 'No Wa tidak valid !',
             'no_wa.required' => 'No Whatshap harus di isi !',
+            'kelas.required' => 'Kelas harus di isi !',
             'alamat.required' => 'Alamat harus di isi !',
         ]);
 
@@ -53,10 +59,11 @@ class PeminjamController extends Controller
             'email' => $request->email,
             'nama' => $request->nama,
             'no_wa' => $request->no_wa,
+            'kelas' => $request->kelas,
             'alamat' => $request->alamat,
         ]);
 
-        return redirect('/sesi')->with('success','Data telah disimpan di database admin !');
+        return redirect('/sesi')->with('success','Data berhasil di simpan, silahkan hubungi admin untuk meminjam barang !');
     }
 
     /**
@@ -92,10 +99,27 @@ class PeminjamController extends Controller
      */
     public function update(Request $request, Peminjam $peminjam)
     {
+        $this->validate($request,[
+            'nama' => 'required',
+            'no_wa' => 'required|numeric|digits_between:1,15',
+            'kelas' => 'required',
+            'alamat' => 'required',
+        ],[
+            'email.required' => 'Email wajib di isi !',
+            'email.unique' => 'Email sudah terdaftar, jika terjadi kesalahan hubungi admin !',
+            'nama.required' => 'Nama wajib di isi !',
+            'nama.digits' => 'Nama tidak valid atau terlalu panjang !',
+            'no_wa.digits_between' => 'No Wa tidak valid !',
+            'no_wa.required' => 'No Whatshap harus di isi !',
+            'kelas.required' => 'Kelas harus di isi !',
+            'alamat.required' => 'Alamat harus di isi !',
+        ]);
+        
         $rules=([
             'email' => 'required',
             'nama' => 'required',
             'no_wa' => 'required',
+            'kelas' => 'required',
             'alamat' => 'required',
         ]);
 

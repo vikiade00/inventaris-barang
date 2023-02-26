@@ -25,9 +25,18 @@ Form Tambah Data Barang
         @enderror
       </div>
       <div class="mb-3">
-        <label for="no_wa" class="col-form-label">No Whatshap :</label>
+        <label for="no_wa" class="col-form-label">No Whatsapp :</label>
         <input autocomplete="off" onkeyup="this.value = this.value.toUpperCase()" type="text" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa" name="no_wa" autofocus value="{{ old('no_wa',$peminjam->no_wa) }}">
         @error('no_wa')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+      <div class="mb-3">
+        <label for="kelas" class="col-form-label">Kelas :</label>
+        <input autocomplete="off" onkeyup="this.value = this.value.toUpperCase()" type="text" class="form-control @error('kelas') is-invalid @enderror" id="kelas" name="kelas" autofocus value="{{ old('kelas',$peminjam->kelas) }}">
+        @error('kelas')
           <div class="invalid-feedback">
             {{ $message }}
           </div>

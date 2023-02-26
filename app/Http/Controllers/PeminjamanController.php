@@ -50,12 +50,14 @@ class PeminjamanController extends Controller
     {    
         $validator = Validator::make($request->all(),[
             'nama_peminjam' => 'required',
-            'jumlah_pinjam' => 'required',
+            'nama_barang' => 'required',
+            'jumlah_pinjam' => 'required|digits_between:0,99999',
             'keperluan' => 'required',
         ],[
             'nama_peminjam.required' => 'Field nama peminjam tidak boleh kosong !',
+            'nama_barang.required' => 'Field nama barang tidak boleh kosong !',
             'jumlah_pinjam.required' => 'Field jumlah pinjam tidak boleh kosong !',
-            'jumlah_pinjam.numeric' => 'Harus Berbentuk Angka !',
+            'jumlah_pinjam.digits_between' => 'Jumlah pinjam minimal 1!',
             'keperluan.required' => 'Field keperluan tidak boleh kosong !',
         ]);
 

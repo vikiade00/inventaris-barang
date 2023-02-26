@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LoginController;
@@ -36,3 +37,6 @@ Route::resource('/pengembalian', PengembalianController::class)->middleware('isL
 Route::get('/peminjam/register',[PeminjamController::class, 'create'])->middleware('isTamu');
 Route::post('/peminjam/store',[PeminjamController::class, 'store'])->middleware('isTamu');
 Route::resource('/peminjam', PeminjamController::class)->middleware('isLogin');
+
+Route::get('/print/barang', [CetakController::class, 'cetakBarang']);
+

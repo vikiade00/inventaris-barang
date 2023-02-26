@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('nama');
             $table->string('no_wa');
+            $table->string('kelas');
             $table->string('alamat');
             $table->timestamps();
         });

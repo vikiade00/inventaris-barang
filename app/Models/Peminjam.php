@@ -14,6 +14,7 @@ class Peminjam extends Model
         'email',
         'nama',
         'no_wa',
+        'kelas',
         'alamat',
     ];
 }

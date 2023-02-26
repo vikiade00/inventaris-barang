@@ -28,6 +28,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 @include('sweetalert::alert')
+
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -80,7 +81,6 @@
               </p>
             </a>
           </li>
-
           <li class="nav-header">Manajemen</li>
           <li class="nav-item">
             <a href="/barang" class="nav-link">
@@ -98,7 +98,6 @@
               </p>
             </a>
           </li>
-
           
           <li class="nav-header">Akun</li>
           <li class="nav-item">
